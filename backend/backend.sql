@@ -12,7 +12,8 @@ as ENUM
 
 CREATE TABLE members (
     id Serial Unique Primary Key, 
-    memberName text, age Integer,
+    memberName text, 
+    age Integer,
     matchingPoints Integer, 
     email text, 
     password Varchar
@@ -20,7 +21,7 @@ CREATE TABLE members (
 
 CREATE TABLE preferences (id Serial Unique Primary Key, 
 memberId Integer references members (id),
-answer1 Integer,
+answer1 answers,
 answer2 gender,
 answer3 answers,
 answer4 answers,
