@@ -46,11 +46,9 @@ public class memberRepository {
             return new member(resultSet.getInt("id"),resultSet.getString("memberName"),
                     resultSet.getInt("age"), resultSet.getInt("matchingPoints"),
                     resultSet.getString("email"),resultSet.getString("password"));
-
         }
         catch (SQLException e){
             return null;
         }
     }
-    
 }

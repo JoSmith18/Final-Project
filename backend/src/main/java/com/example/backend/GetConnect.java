@@ -6,6 +6,6 @@ import java.sql.SQLException;
 
 public class GetConnect {
     public static Connection get() throws SQLException {
-        return DriverManager.getConnection("jdbc:postgresql:bccaGradebook", "basecamp", "pgpass");
+        return DriverManager.getConnection("jdbc:postgresql:datingDB", "basecamp", "pgpass");
     }
 }
