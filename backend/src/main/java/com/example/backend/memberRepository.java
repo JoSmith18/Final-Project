@@ -19,7 +19,7 @@ public class memberRepository {
                 allMember.add(new
                         member(resultSet.getInt("id"),
                         resultSet.getString("memberName"),
-                        resultSet.getInt("age"),
+                        resultSet.getString("age"),
                         resultSet.getInt("matchingPoints"),
                         resultSet.getString("email"),
                         resultSet.getString("password")));
@@ -31,23 +31,26 @@ public class memberRepository {
         }
     }
 
-    public static member insertMember(String memberName,Integer age, String email, String password){
+    public static member insertMember(String memberName,String age, String email, String password){
         try {
             Connection conn = GetConnect.get();
             PreparedStatement preparedStatement = conn.prepareStatement(
                     "INSERT INTO members (" +
                             "memberName,age,email,password) " +
-                            "VALUES (?,?,?,?)");
+                            "VALUES (?,?,?,?)" +
+                            "RETURNING id,matchingPoints");
             preparedStatement.setString(1,memberName);
-            preparedStatement.setInt(2,age);
+            preparedStatement.setString(2,age);
             preparedStatement.setString(3,email);
             preparedStatement.setString(4,password);
             ResultSet resultSet = preparedStatement.executeQuery();
-            return new member(resultSet.getInt("id"),resultSet.getString("memberName"),
-                    resultSet.getInt("age"), resultSet.getInt("matchingPoints"),
-                    resultSet.getString("email"),resultSet.getString("password"));
+            resultSet.next();
+            return new member(resultSet.getInt("id"),memberName,
+                    age, resultSet.getInt("matchingPoints"),
+                    email,password);
         }
         catch (SQLException e){
+            System.out.println(e.getMessage());
             return null;
         }
     }

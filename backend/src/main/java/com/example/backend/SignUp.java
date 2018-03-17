@@ -4,7 +4,7 @@ import java.util.Map;
 
 public class SignUp {
     public String memberName;
-    public Integer age;
+    public String age;
     public String email;
     public String password;
 

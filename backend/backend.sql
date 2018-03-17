@@ -13,7 +13,7 @@ as ENUM
 CREATE TABLE members (
     id Serial Unique Primary Key, 
     memberName text, 
-    age Integer,
+    age text,
     matchingPoints Integer, 
     email text, 
     password Varchar
@@ -44,11 +44,11 @@ answer8 as Answer8
 FROM members, preferences 
 GROUP BY memberId,memberName,answer1,answer2,answer3,answer4,answer5,answer6,answer7,answer8;
 
-INSERT INTO members (memberName,email,password) VALUES (
-    'Shedlia',
-    'sfreeman@basecampcodingacademy.org',
-    'password123');
-
-INSERT INTO preferences (memberId,answer1,answer2,answer3,answer4,answer5,answer6,answer7,answer8) VALUES (1, 75, 'Female','A','C','C','A','A','A');
-
-SELECT * FROM memberPreferences;
+--INSERT INTO members (memberName,email,password) VALUES (
+--    'Shedlia',
+--    'sfreeman@basecampcodingacademy.org',
+--    'password123');
+--
+--INSERT INTO preferences (memberId,answer1,answer2,answer3,answer4,answer5,answer6,answer7,answer8) VALUES (1, 75, 'Female','A','C','C','A','A','A');
+--
+--SELECT * FROM memberPreferences;

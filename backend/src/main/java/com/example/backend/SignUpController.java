@@ -8,9 +8,9 @@ import java.util.Map;
 
 @RestController
 public class SignUpController {
+    @CrossOrigin(allowedHeaders="*",allowCredentials="true")
     @PostMapping("/SignUp")
     public member signUp(@RequestBody SignUp newMem) {
-        System.out.println(newMem.password);
             String hashedPassword = BCrypt.hashpw(newMem.password, BCrypt.gensalt());
             member newMember = memberRepository.insertMember(newMem.memberName, newMem.age
                     ,newMem.email, hashedPassword);
