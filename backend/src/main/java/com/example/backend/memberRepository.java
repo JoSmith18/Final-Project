@@ -36,8 +36,8 @@ public class memberRepository {
             Connection conn = GetConnect.get();
             PreparedStatement preparedStatement = conn.prepareStatement(
                     "INSERT INTO members (" +
-                            "memberName,age,email,password) " +
-                            "VALUES (?,?,?,?)" +
+                            "memberName,age,email,password, matchingPoints) " +
+                            "VALUES (?,?,?,?,2)" +
                             "RETURNING id,matchingPoints");
             preparedStatement.setString(1,memberName);
             preparedStatement.setString(2,age);
@@ -46,7 +46,7 @@ public class memberRepository {
             ResultSet resultSet = preparedStatement.executeQuery();
             resultSet.next();
             return new member(resultSet.getInt("id"),memberName,
-                    age, resultSet.getInt("matchingPoints"),
+                    age, resultSet.getInt("matchingPoints") + 2,
                     email,password);
         }
         catch (SQLException e){

@@ -2,31 +2,129 @@
 
 <head>
     <title>LOADING......</title>
+    <link href="./bootwatch.css" rel="stylesheet" type="text/css" />
     <link href="index.css" rel="stylesheet" type="text/css" />
 </head>
 
 <body>
-    <form>
-        <fieldset>
-            <input class="form-control" type="text" size="30" id="memberName" placeholder="Full name">
-            <br>
-            <select multiple="" class="form-control" id="age">
-                <option>18-25</option>
-                <option>26-33</option>
-                <option>34-41</option>
-                <option>42-49</option>
-                <option>50-100</option>
-            </select>
-            <br>
-            <input class="form-control" type="text" size="30" id="email" placeholder="Phone or Email">
-            <br>
-            <input class="form-control" type="password" size="10" id="pwd" placeholder="Password">
+    <div id="signUpDiv">
+        <form>
+            <fieldset>
+                <div class="form-group">
+                    <input class="form-control" type="text" size="30" id="memberName" placeholder="Full name">
+                    <br>
+                </div>
+                <div class="form-group">
+                    <select multiple="" class="form-control" id="age">
+                        <option>18-25</option>
+                        <option>26-33</option>
+                        <option>34-41</option>
+                        <option>42-49</option>
+                        <option>50-100</option>
+                    </select>
+                    <br>
+                </div>
+                <div class="form-group">
+                    <input class="form-control" type="text" size="30" id="email" placeholder="Phone or Email">
+                    <br>
+                </div>
+                <div class="form-group">
+                    <input class="form-control" type="password" size="10" id="pwd" placeholder="Password">
+                </div>
+                <br>
 
-            <br>
+            </fieldset>
+        </form>
+        <button class="btn btn-lg signup-btn" onclick="signUp()">Sign Up</button>
+    </div>
+    <div id="preferencesDiv" hidden>
+        <form>
+            <fieldset>
+                <div class="form-group">
+                    <label>What Age Group Are You Looking For??</label>
+                    <select multiple="" class="form-control" id="answer1">
+                        <option>18-25</option>
+                        <option>26-33</option>
+                        <option>34-41</option>
+                        <option>42-49</option>
+                        <option>50-100</option>
+                    </select>
+                    <br>
+                </div>
+                <div class="form-group">
+                    <label>What Gender Would You Like??</label>
+                    <select multiple="" class="form-control" id="answer2">
+                        <option>Male</option>
+                        <option>Female</option>
+                        <option>Don't Want To Specify</option>
+                    </select>
+                    <br>
+                </div>
+                <div class="form-group">
+                    <label>Which language would you prefer??</label>
+                    <select multiple="" class="form-control" id="answer3">
+                        <option>Python</option>
+                        <option>Java</option>
+                        <option>Closure</option>
+                        <option>Ruby</option>
+                    </select>
+                    <br>
+                </div>
+                <div class="form-group">
+                    <label>Another programming Question?</label>
+                    <select multiple="" class="form-control" id="answer4">
+                        <option>18-25</option>
+                        <option>26-33</option>
+                        <option>34-41</option>
+                        <option>42-49</option>
+                    </select>
+                    <br>
+                </div>
+                <div class="form-group">
+                    <label>Another programming Question?</label>
+                    <select multiple="" class="form-control" id="answer5">
+                        <option>18-25</option>
+                        <option>26-33</option>
+                        <option>34-41</option>
+                        <option>42-49</option>
+                    </select>
+                    <br>
+                </div>
+                <div class="form-group">
+                    <label>Another programming Question?</label>
+                    <select multiple="" class="form-control" id="answer6">
+                        <option>18-25</option>
+                        <option>26-33</option>
+                        <option>34-41</option>
+                        <option>42-49</option>
+                    </select>
+                    <br>
+                </div>
+                <div class="form-group">
+                    <label>Another programming Question?</label>
+                    <select multiple="" class="form-control" id="answer7">
+                        <option>18-25</option>
+                        <option>26-33</option>
+                        <option>34-41</option>
+                        <option>42-49</option>
+                    </select>
+                    <br>
+                </div>
+                <div class="form-group">
+                    <label>Another programming Question?</label>
+                    <select multiple="" class="form-control" id="answer8">
+                        <option>18-25</option>
+                        <option>26-33</option>
+                        <option>34-41</option>
+                        <option>42-49</option>
+                    </select>
+                    <br>
+                </div>
+            </fieldset>
+        </form>
+        <button class="btn btn-lg signup-btn" onclick="finishPreferences">Submit</button>
+    </div>
 
-        </fieldset>
-    </form>
-    <button class="btn btn-lg signup-btn" onclick="signUp()">Sign Up</button>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>

@@ -3,12 +3,6 @@ as ENUM
 ('Male',
 'Female');
 
-CREATE TYPE answers 
-as ENUM
-('A',
-'B',
-'C',
-'D');
 
 CREATE TABLE members (
     id Serial Unique Primary Key, 
@@ -21,14 +15,14 @@ CREATE TABLE members (
 
 CREATE TABLE preferences (id Serial Unique Primary Key, 
 memberId Integer references members (id),
-answer1 answers,
+answer1 text,
 answer2 gender,
-answer3 answers,
-answer4 answers,
-answer5 answers,
-answer6 answers,
-answer7 answers,
-answer8 answers);
+answer3 text,
+answer4 text,
+answer5 text,
+answer6 text,
+answer7 text,
+answer8 text);
 
 CREATE VIEW memberPreferences 
 AS SELECT memberId,

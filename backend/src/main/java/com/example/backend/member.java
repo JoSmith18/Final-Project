@@ -12,7 +12,7 @@ public class member {
         this.id = id;
         this.memberName = memberName;
         this.age = age;
-        this.matchingPoints = matchingPoints;
+        this.matchingPoints = matchingPoints ;
         this.email = email;
         this.password = password;
     }

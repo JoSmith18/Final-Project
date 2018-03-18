@@ -12,14 +12,23 @@ function signUp() {
         }),
         contentType: 'application/json',
         mimeType: 'application/json',
-        success: function(data) {
-            alert(data.success + ' ' + data.message);
-            //commit(true);
-        },
         error: function(data, status, er) {
             alert('status: ' + status);
         }
-    });
+    })
+        .then(function handleFeedResponse(response) {
+            var data = response;
+            $('#preferencesDiv').removeAttr('hidden');
+            $('#signUpDiv').attr('hidden', true);
+            $('body').prepend(
+                "<div class='jumbotron'><center><h3>" +
+                    response.memberName +
+                    '</h3></center></div>'
+            );
+        })
+        .catch(function handleFeedError(response) {
+            console.log(response);
+        });
     // $.post(
     //     'http://localhost:8080/SignUp',
 
@@ -30,13 +39,4 @@ function signUp() {
     //         password: $('#pwd').val()
     //     })
     // )
-    //     .then(function handleFeedResponse(response) {
-    //         // window.location.replace(
-    //         //     'feed.html?username=' + $('#username').val()
-    //         // );
-    //         console.log('ITS BEEN A LONG TIME COMING!!!!!!!!!');
-    //     })
-    //     .catch(function handleFeedError(response) {
-    //         console.log(response);
-    //     });
 }
