@@ -23,7 +23,7 @@ function signUp() {
             $('body').prepend(
                 "<div class='jumbotron'><center><h3>" +
                     response.memberName +
-                    '</h3></center></div>'
+                    '</h3><h5>Answer Following Questions!!</h5></center></div>'
             );
         })
         .catch(function handleFeedError(response) {
