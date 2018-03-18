@@ -1,6 +1,7 @@
 package com.example.backend;
 
 public class Answers {
+    public Integer ID;
     public String answer1;
     public String answer2;
     public String answer3;

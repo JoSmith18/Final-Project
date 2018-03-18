@@ -1,9 +1,3 @@
-CREATE TYPE gender 
-as ENUM 
-('Male',
-'Female');
-
-
 CREATE TABLE members (
     id Serial Unique Primary Key, 
     memberName text, 
@@ -16,7 +10,7 @@ CREATE TABLE members (
 CREATE TABLE preferences (id Serial Unique Primary Key, 
 memberId Integer references members (id),
 answer1 text,
-answer2 gender,
+answer2 text,
 answer3 text,
 answer4 text,
 answer5 text,
