@@ -13,7 +13,7 @@ public class SignUpController {
     public member signUp(@RequestBody SignUp newMem) {
             String hashedPassword = BCrypt.hashpw(newMem.password, BCrypt.gensalt());
             member newMember = memberRepository.insertMember(newMem.memberName, newMem.age
-                    ,newMem.email, hashedPassword);
+                    ,newMem.email, hashedPassword,newMem.profilePicUrl);
             if (newMember != null) {
                 return newMember;
             } else {

@@ -7,6 +7,7 @@ public class SignUp {
     public String age;
     public String email;
     public String password;
+    public String profilePicUrl;
 
 
 

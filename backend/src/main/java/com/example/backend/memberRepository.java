@@ -22,7 +22,8 @@ public class memberRepository {
                         resultSet.getString("age"),
                         resultSet.getInt("matchingPoints"),
                         resultSet.getString("email"),
-                        resultSet.getString("password")));
+                        resultSet.getString("password"),
+                        resultSet.getString("profilePicUrl")));
             }
             return allMember;
         }
@@ -31,23 +32,24 @@ public class memberRepository {
         }
     }
 
-    public static member insertMember(String memberName,String age, String email, String password){
+    public static member insertMember(String memberName,String age, String email, String password, String profileURL){
         try {
             Connection conn = GetConnect.get();
             PreparedStatement preparedStatement = conn.prepareStatement(
                     "INSERT INTO members (" +
-                            "memberName,age,email,password, matchingPoints) " +
-                            "VALUES (?,?,?,?,2)" +
+                            "memberName,age,email,password, matchingPoints, profilePicUrl) " +
+                            "VALUES (?,?,?,?,2,?)" +
                             "RETURNING id,matchingPoints");
             preparedStatement.setString(1,memberName);
             preparedStatement.setString(2,age);
             preparedStatement.setString(3,email);
             preparedStatement.setString(4,password);
+            preparedStatement.setString(5,profileURL);
             ResultSet resultSet = preparedStatement.executeQuery();
             resultSet.next();
             return new member(resultSet.getInt("id"),memberName,
                     age, resultSet.getInt("matchingPoints") + 2,
-                    email,password);
+                    email,password,profileURL);
         }
         catch (SQLException e){
             System.out.println(e.getMessage());
