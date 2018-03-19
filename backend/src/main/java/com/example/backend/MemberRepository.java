@@ -6,18 +6,18 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class memberRepository {
+public class MemberRepository {
 
-    public static ArrayList<member> allMembers(){
+    public static ArrayList<Member> allMembers(){
         try {
             Connection conn = GetConnect.get();
             PreparedStatement preparedStatement = conn.prepareStatement(
                     "SELECT * FROM members");
             ResultSet resultSet = preparedStatement.executeQuery();
-            ArrayList<member> allMember = new ArrayList<member>();
+            ArrayList<Member> allMember = new ArrayList<Member>();
             while (resultSet.next()){
                 allMember.add(new
-                        member(resultSet.getInt("id"),
+                        Member(resultSet.getInt("id"),
                         resultSet.getString("memberName"),
                         resultSet.getString("age"),
                         resultSet.getInt("matchingPoints"),
@@ -32,7 +32,7 @@ public class memberRepository {
         }
     }
 
-    public static member insertMember(String memberName,String age, String email, String password, String profileURL){
+    public static Member insertMember(String memberName, String age, String email, String password, String profileURL){
         try {
             Connection conn = GetConnect.get();
             PreparedStatement preparedStatement = conn.prepareStatement(
@@ -47,7 +47,7 @@ public class memberRepository {
             preparedStatement.setString(5,profileURL);
             ResultSet resultSet = preparedStatement.executeQuery();
             resultSet.next();
-            return new member(resultSet.getInt("id"),memberName,
+            return new Member(resultSet.getInt("id"),memberName,
                     age, resultSet.getInt("matchingPoints") + 2,
                     email,password,profileURL);
         }

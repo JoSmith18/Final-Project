@@ -1,6 +1,6 @@
 package com.example.backend;
 
-public class member {
+public class Member {
     public Integer id;
     public String memberName;
     public String age;
@@ -9,7 +9,7 @@ public class member {
     public String password;
     public String profileURL;
 
-    public member(Integer id, String memberName, String age, Integer matchingPoints, String email, String password, String profileURL){
+    public Member(Integer id, String memberName, String age, Integer matchingPoints, String email, String password, String profileURL){
         this.id = id;
         this.memberName = memberName;
         this.age = age;

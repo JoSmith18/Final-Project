@@ -80,11 +80,11 @@ function submitPrefs(id, profileURL, memberName, email) {
             alert('status: ' + status);
         }
     })
-        .then(function handleFeedResponse() {
+        .then(function handleFeedResponse(response) {
             $('#body').html(
                 '<div><img src=' +
                     profileURL +
-                    ' class="img"><h3>' +
+                    '" class="img"><h3>' +
                     memberName +
                     '</h3><span>@' +
                     email +

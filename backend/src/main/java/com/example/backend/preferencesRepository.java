@@ -6,9 +6,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class preferencesRepository {
-    public static preferences insertPreferences(Integer memID, String answer1, String answer2,
-                                           String answer3, String answer4, String answer5,
-                                           String answer6, String answer7, String answer8){
+    public static Preferences insertPreferences(Integer memID, String answer1, String answer2,
+                                                String answer3, String answer4, String answer5,
+                                                String answer6, String answer7, String answer8){
         try {
             Connection conn = GetConnect.get();
             PreparedStatement preparedStatement = conn.prepareStatement(
@@ -26,7 +26,7 @@ public class preferencesRepository {
             preparedStatement.setString(9,answer8);
             ResultSet resultSet = preparedStatement.executeQuery();
             resultSet.next();
-            return new preferences(resultSet.getInt("id"),memID,answer1,answer2,answer3,answer4,answer5,answer6,answer7,answer8);
+            return new Preferences(resultSet.getInt("id"),memID,answer1,answer2,answer3,answer4,answer5,answer6,answer7,answer8);
         }
         catch (SQLException e){
             System.out.println(e.getMessage());

@@ -1,6 +1,6 @@
 package com.example.backend;
 
-public class preferences {
+public class Preferences {
     public Integer id;
     public Integer memID;
     public String answer1;
@@ -12,7 +12,7 @@ public class preferences {
     public String answer7;
     public String answer8;
 
-    public preferences(Integer id, Integer memID, String answer1, String answer2,
+    public Preferences(Integer id, Integer memID, String answer1, String answer2,
                        String answer3, String answer4, String answer5,
                        String answer6, String answer7, String answer8){
         this.id = id;

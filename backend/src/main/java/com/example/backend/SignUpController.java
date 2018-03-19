@@ -1,18 +1,18 @@
 package com.example.backend;
 import org.mindrot.jbcrypt.BCrypt;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.Map;
 
 @RestController
 public class SignUpController {
+    @Value("${app.salt}")
+    private String salt;
     @CrossOrigin(allowedHeaders="*",allowCredentials="true")
     @PostMapping("/SignUp")
-    public member signUp(@RequestBody SignUp newMem) {
-            String hashedPassword = BCrypt.hashpw(newMem.password, BCrypt.gensalt());
-            member newMember = memberRepository.insertMember(newMem.memberName, newMem.age
+    public Member signUp(@RequestBody SignUp newMem) {
+            String hashedPassword = BCrypt.hashpw(newMem.password, salt);
+            Member newMember = MemberRepository.insertMember(newMem.memberName, newMem.age
                     ,newMem.email, hashedPassword,newMem.profilePicUrl);
             if (newMember != null) {
                 return newMember;
