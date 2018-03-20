@@ -4,8 +4,37 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
-public class preferencesRepository {
+public class PreferencesRepository {
+    public static ArrayList<Preferences> allPreferences(){
+        try {
+            Connection conn = GetConnect.get();
+            PreparedStatement preparedStatement = conn.prepareStatement(
+                    "SELECT * FROM preferences");
+            ResultSet resultSet = preparedStatement.executeQuery();
+            ArrayList<Preferences> allPreferences = new ArrayList<Preferences>();
+            while (resultSet.next()){
+                allPreferences.add(new
+                        Preferences(resultSet.getInt("id"),
+                        resultSet.getInt("memberId"),
+                        resultSet.getString("answer1"),
+                        resultSet.getString("answer2"),
+                        resultSet.getString("answer3"),
+                        resultSet.getString("answer4"),
+                        resultSet.getString("answer5"),
+                        resultSet.getString("answer6"),
+                        resultSet.getString("answer7"),
+                        resultSet.getString("answer8")));
+            }
+            return allPreferences;
+        }
+        catch (SQLException e){
+            System.out.println(e.getMessage());
+            return null;
+        }
+    }
+
     public static Preferences insertPreferences(Integer memID, String answer1, String answer2,
                                                 String answer3, String answer4, String answer5,
                                                 String answer6, String answer7, String answer8){

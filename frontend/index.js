@@ -1,17 +1,11 @@
 function signUp() {
-    var file = $('input:file')[0].files[0];
-    if (file) {
-        var url = window.URL.createObjectURL(file);
-    } else {
-        var url = '';
-    }
     console.log(
         JSON.stringify({
             memberName: $('#memberName').val(),
-            age: $('#age option:selected').text(),
+            gender: $('#gender option:selected').text(),
+            age: $('#age').val(),
             email: $('#email').val(),
-            password: $('#pwd').val(),
-            profilePicUrl: url
+            password: $('#pwd').val()
         })
     );
     $.ajax({
@@ -21,10 +15,10 @@ function signUp() {
         crossDomain: true,
         data: JSON.stringify({
             memberName: $('#memberName').val(),
-            age: $('#age option:selected').text(),
+            gender: $('#gender option:selected').text(),
+            age: $('#age').val(),
             email: $('#email').val(),
-            password: $('#pwd').val(),
-            profilePicUrl: url
+            password: $('#pwd').val()
         }),
         contentType: 'application/json',
         mimeType: 'application/json',
@@ -38,12 +32,7 @@ function signUp() {
             $('#preferencesDiv').removeAttr('hidden');
             $('#signUpDiv').attr('hidden', true);
             $('#submitPrefsButton').click(function() {
-                submitPrefs(
-                    data.id,
-                    data.profileURL,
-                    data.memberName,
-                    data.email
-                );
+                submitPrefs(data.id, data.age, data.memberName, data.email);
             });
             $('body').prepend(
                 "<div class='jumbotron'><center><h3>" +
@@ -56,8 +45,7 @@ function signUp() {
         });
 }
 
-function submitPrefs(id, profileURL, memberName, email) {
-    console.log(profileURL);
+function submitPrefs(id, age, memberName, email) {
     $.ajax({
         url: 'http://localhost:8080/submitPrefs',
         method: 'POST',
@@ -65,7 +53,7 @@ function submitPrefs(id, profileURL, memberName, email) {
         crossDomain: true,
         data: JSON.stringify({
             ID: id,
-            answer1: $('#answer1 option:selected').text(),
+            answer1: $('#answer1').val(),
             answer2: $('#answer2 option:selected').text(),
             answer3: $('#answer3 option:selected').text(),
             answer4: $('#answer4 option:selected').text(),
@@ -81,15 +69,7 @@ function submitPrefs(id, profileURL, memberName, email) {
         }
     })
         .then(function handleFeedResponse(response) {
-            $('#body').html(
-                '<div><img src=' +
-                    profileURL +
-                    '" class="img"><h3>' +
-                    memberName +
-                    '</h3><span>@' +
-                    email +
-                    '</span><br></div>'
-            );
+            window.location.replace('member_page.html?id=' + response.memID);
         })
         .catch(function handleFeedError(response) {
             console.log(response);

@@ -1,11 +1,11 @@
 CREATE TABLE members (
     id Serial Unique Primary Key, 
-    memberName text, 
+    memberName text,
+    gender text,
     age text,
     matchingPoints Integer, 
     email text, 
-    password Varchar,
-    profilePicUrl text
+    password Varchar
 );
 
 CREATE TABLE preferences (id Serial Unique Primary Key, 
