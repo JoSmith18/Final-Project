@@ -4,7 +4,7 @@ function signUp() {
             memberName: $('#memberName').val(),
             gender: $('#gender option:selected').text(),
             age: $('#age').val(),
-            email: $('#email').val(),
+            githubLink: $('#githubLink').val(),
             password: $('#pwd').val()
         })
     );
@@ -17,7 +17,7 @@ function signUp() {
             memberName: $('#memberName').val(),
             gender: $('#gender option:selected').text(),
             age: $('#age').val(),
-            email: $('#email').val(),
+            githubLink: $('#github').val(),
             password: $('#pwd').val()
         }),
         contentType: 'application/json',
@@ -32,7 +32,12 @@ function signUp() {
             $('#preferencesDiv').removeAttr('hidden');
             $('#signUpDiv').attr('hidden', true);
             $('#submitPrefsButton').click(function() {
-                submitPrefs(data.id, data.age, data.memberName, data.email);
+                submitPrefs(
+                    data.id,
+                    data.age,
+                    data.memberName,
+                    data.githubLink
+                );
             });
             $('body').prepend(
                 "<div class='jumbotron'><center><h3>" +
@@ -45,7 +50,7 @@ function signUp() {
         });
 }
 
-function submitPrefs(id, age, memberName, email) {
+function submitPrefs(id, age, memberName, githubLink) {
     $.ajax({
         url: 'http://localhost:8080/submitPrefs',
         method: 'POST',
@@ -53,7 +58,7 @@ function submitPrefs(id, age, memberName, email) {
         crossDomain: true,
         data: JSON.stringify({
             ID: id,
-            answer1: $('#answer1').val(),
+            answer1: $('#answer1 option:selected').text(),
             answer2: $('#answer2 option:selected').text(),
             answer3: $('#answer3 option:selected').text(),
             answer4: $('#answer4 option:selected').text(),

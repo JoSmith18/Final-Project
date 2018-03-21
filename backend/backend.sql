@@ -3,9 +3,9 @@ CREATE TABLE members (
     memberName text,
     gender text,
     age text,
-    matchingPoints Integer, 
-    email text, 
-    password Varchar
+    githubLink text,
+    password Varchar,
+    sessionKey text
 );
 
 CREATE TABLE preferences (id Serial Unique Primary Key, 

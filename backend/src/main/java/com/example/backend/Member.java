@@ -5,17 +5,18 @@ public class Member {
     public String memberName;
     public String age;
     public Integer matchingPoints;
-    public String email;
+    public String githubLink;
     public String password;
     public String gender;
+    public String sessionKey;
 
-    public Member(Integer id, String memberName, String age, Integer matchingPoints, String email, String password,String gender){
+    public Member(Integer id, String memberName, String age,String githubLink, String password,String gender, String sessionKey){
         this.id = id;
         this.memberName = memberName;
         this.age = age;
-        this.matchingPoints = matchingPoints ;
-        this.email = email;
+        this.githubLink = githubLink;
         this.password = password;
         this.gender = gender;
+        this.sessionKey = sessionKey;
     }
 }

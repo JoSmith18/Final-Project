@@ -20,11 +20,12 @@ public class MemberRepository {
                         Member(resultSet.getInt("id"),
                         resultSet.getString("memberName"),
                         resultSet.getString("age"),
-                        resultSet.getInt("matchingPoints"),
-                        resultSet.getString("email"),
+                        resultSet.getString("githubLink"),
                         resultSet.getString("password"),
-                        resultSet.getString("gender")));
+                        resultSet.getString("gender"),
+                        resultSet.getString("sessionKey")));
             }
+            conn.close();
             return allMember;
         }
         catch (SQLException e){
@@ -32,24 +33,27 @@ public class MemberRepository {
         }
     }
 
-    public static Member insertMember(String memberName, String age, String email, String password, String gender){
+    public static Member insertMember(String memberName, String age, String githubLink, String password, String gender,String sessionKey){
         try {
             Connection conn = GetConnect.get();
             PreparedStatement preparedStatement = conn.prepareStatement(
                     "INSERT INTO members (" +
-                            "memberName,age,email,password, matchingPoints, gender) " +
-                            "VALUES (?,?,?,?,2,?)" +
+                            "memberName,age,githubLink,password, gender, sessionKey) " +
+                            "VALUES (?,?,?,?,?,?)" +
                             "RETURNING id,matchingPoints");
             preparedStatement.setString(1,memberName);
             preparedStatement.setString(2,age);
-            preparedStatement.setString(3,email);
+            preparedStatement.setString(3,githubLink);
             preparedStatement.setString(4,password);
             preparedStatement.setString(5,gender);
+            preparedStatement.setString(6,sessionKey);
+
             ResultSet resultSet = preparedStatement.executeQuery();
             resultSet.next();
+            conn.close();
             return new Member(resultSet.getInt("id"),memberName,
-                    age, resultSet.getInt("matchingPoints") + 2,
-                    email,password,gender);
+                    age,
+                    githubLink,password,gender,sessionKey);
         }
         catch (SQLException e){
             System.out.println(e.getMessage());
@@ -70,11 +74,12 @@ public class MemberRepository {
                         Member(resultSet.getInt("id"),
                         resultSet.getString("memberName"),
                         resultSet.getString("age"),
-                        resultSet.getInt("matchingPoints"),
-                        resultSet.getString("email"),
+                        resultSet.getString("githubLink"),
                         resultSet.getString("password"),
-                        resultSet.getString("gender")));
+                        resultSet.getString("gender"),
+                        resultSet.getString("sessionKey")));
             }
+            conn.close();
             return allMember;
         }
         catch (SQLException e){
