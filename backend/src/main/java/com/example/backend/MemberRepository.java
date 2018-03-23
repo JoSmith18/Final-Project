@@ -40,7 +40,7 @@ public class MemberRepository {
                     "INSERT INTO members (" +
                             "memberName,age,githubLink,password, gender, sessionKey) " +
                             "VALUES (?,?,?,?,?,?)" +
-                            "RETURNING id,matchingPoints");
+                            "RETURNING id");
             preparedStatement.setString(1,memberName);
             preparedStatement.setString(2,age);
             preparedStatement.setString(3,githubLink);
@@ -81,6 +81,55 @@ public class MemberRepository {
             }
             conn.close();
             return allMember;
+        }
+        catch (SQLException e){
+            return null;
+        }
+    }
+
+    public static Member deleteSessionKey(String id){
+        try {
+            Connection conn = GetConnect.get();
+            PreparedStatement preparedStatement = conn.prepareStatement(
+                    "UPDATE members SET sessionKey = null WHERE id = ?;");
+            preparedStatement.setInt(1,Integer.valueOf(id));
+            ResultSet resultSet = preparedStatement.executeQuery();
+            resultSet.next();
+            return new
+                    Member(resultSet.getInt("id"),
+                    resultSet.getString("memberName"),
+                    resultSet.getString("age"),
+                    resultSet.getString("githubLink"),
+                    resultSet.getString("password"),
+                    resultSet.getString("gender"),
+                    resultSet.getString("sessionKey"));
+        }
+        catch (SQLException e){
+            return null;
+        }
+    }
+
+    public static Member isMember( String sessionKey,String memberName, String password){
+
+        try {
+            Connection conn = GetConnect.get();
+            PreparedStatement preparedStatement = conn.prepareStatement(
+                    "UPDATE members SET sessionKey = ? WHERE memberName = ? and password = ? returning id, age, githubLink,gender"
+            );
+            preparedStatement.setString(1,sessionKey);
+            preparedStatement.setString(2,memberName);
+            preparedStatement.setString(3,password);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            resultSet.next();
+            return new Member(resultSet.getInt("id"),
+                    memberName,
+                    resultSet.getString("age"),
+                    resultSet.getString("githubLink"),
+                    password,
+                    resultSet.getString("gender"),
+                    sessionKey
+                    );
+
         }
         catch (SQLException e){
             return null;

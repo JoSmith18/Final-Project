@@ -4,7 +4,6 @@ public class Member {
     public Integer id;
     public String memberName;
     public String age;
-    public Integer matchingPoints;
     public String githubLink;
     public String password;
     public String gender;

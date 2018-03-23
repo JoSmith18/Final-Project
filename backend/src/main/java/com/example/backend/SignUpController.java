@@ -17,7 +17,7 @@ public class SignUpController {
         String alphabet= "abcdefghijklmnopqrstuvwxyz";
         String sessionKey = "";
         Random random = new Random();
-        int randomLen = 1+random.nextInt(9);
+        int randomLen = 12+random.nextInt(9);
         for (int i = 0; i < randomLen; i++) {
             char c = alphabet.charAt(random.nextInt(26));
             sessionKey+=c;
@@ -31,5 +31,7 @@ public class SignUpController {
                 return null;
             }
     }
+
+
 
 }
