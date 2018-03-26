@@ -62,6 +62,7 @@ function findMatches() {
 function setFeed(response) {
     var id = getParameterByID('id');
     PAGE_DATA = response;
+    updatePreferences(PAGE_DATA);
     $('.jumbotron').html(makePersonalInfo());
 }
 
@@ -115,6 +116,80 @@ function logout() {
     })
         .then(function handleResponse(response) {
             window.location.replace('login.html');
+        })
+        .catch(function catchError(err) {
+            console.log(err);
+        });
+}
+
+function deleteUser() {
+    var id = getParameterByID('id');
+    $.ajax({
+        async: true,
+        data: { _method: 'delete' },
+        url: 'http://localhost:8080/delete/' + id,
+        method: 'POST',
+        dataType: 'json',
+        crossDomain: true,
+        contentType: 'application/json',
+        mimeType: 'application/json'
+    })
+        .then(function handleResponse(response) {
+            if (response) {
+                alert('You Have Been Deleted!!!');
+                window.location.replace('index.html');
+            } else {
+                alert('status: Error');
+            }
+        })
+        .catch(function catchError(err) {
+            console.log(err);
+        });
+}
+
+function updatePreferences(PAGE_DATA) {
+    $('#answer1').val(PAGE_DATA.preferences.answer1);
+    $('#answer2').val(PAGE_DATA.preferences.answer2);
+    $('#answer3').val(PAGE_DATA.preferences.answer3);
+    $('#answer4').val(PAGE_DATA.preferences.answer4);
+    $('#answer5').val(PAGE_DATA.preferences.answer5);
+    $('#answer6').val(PAGE_DATA.preferences.answer6);
+    $('#answer7').val(PAGE_DATA.preferences.answer7);
+    $('#answer8').val(PAGE_DATA.preferences.answer8);
+}
+
+function newPrefs() {
+    $('#feedPage').attr('hidden', true);
+    $('#updatePrefs').attr('hidden', false);
+}
+
+function submitUpdatedPrefsButton(event) {
+    var id = getParameterByID('id');
+    $.ajax({
+        async: true,
+        url: 'http://localhost:8080/update/' + id,
+        method: 'POST',
+        dataType: 'json',
+        crossDomain: true,
+        data: JSON.stringify({
+            answer1: $('#answer1 option:selected').text(),
+            answer2: $('#answer2 option:selected').text(),
+            answer3: $('#answer3 option:selected').text(),
+            answer4: $('#answer4 option:selected').text(),
+            answer5: $('#answer5 option:selected').text(),
+            answer6: $('#answer6 option:selected').text(),
+            answer7: $('#answer7 option:selected').text(),
+            answer8: $('#answer8 option:selected').text()
+        }),
+        contentType: 'application/json',
+        mimeType: 'application/json'
+    })
+        .then(function handleResponse(response) {
+            if (response) {
+                window.location.replace('member_page.html?id=' + id);
+            } else {
+                alert('status: Error');
+            }
         })
         .catch(function catchError(err) {
             console.log(err);

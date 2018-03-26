@@ -143,7 +143,7 @@ public class MemberRepository {
         try {
             Connection conn = GetConnect.get();
             PreparedStatement preparedStatement = conn.prepareStatement(
-                    "DELETE FROM members WHERE id = ? CASCADE"
+                    "DELETE FROM members WHERE id = ?"
             );
             preparedStatement.setInt(1,id);
             preparedStatement.execute();
@@ -152,6 +152,7 @@ public class MemberRepository {
 
         }
         catch (SQLException e){
+            System.out.println(e.getMessage());
             return false;
         }
     }

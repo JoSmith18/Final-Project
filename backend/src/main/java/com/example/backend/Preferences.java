@@ -12,6 +12,8 @@ public class Preferences {
     public String answer7;
     public String answer8;
 
+    public Preferences() {}
+
     public Preferences(Integer id, Integer memID, String answer1, String answer2,
                        String answer3, String answer4, String answer5,
                        String answer6, String answer7, String answer8){

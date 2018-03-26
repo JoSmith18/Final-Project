@@ -1,5 +1,5 @@
 CREATE TABLE members (
-    id Serial Unique Primary Key, 
+    id Serial Unique Primary Key ,
     memberName text,
     gender text,
     age text,
@@ -9,7 +9,7 @@ CREATE TABLE members (
 );
 
 CREATE TABLE preferences (id Serial Unique Primary Key, 
-memberId Integer references members (id),
+memberId Integer references members (id) ON DELETE CASCADE,
 answer1 text,
 answer2 text,
 answer3 text,

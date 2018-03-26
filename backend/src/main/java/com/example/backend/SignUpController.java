@@ -13,7 +13,7 @@ public class SignUpController {
     @CrossOrigin(allowedHeaders="*",allowCredentials="true")
     @PostMapping("/SignUp")
     public Member signUp(@RequestBody SignUp newMem) {
-            String hashedPassword = BCrypt.hashpw(newMem.password, salt);
+        String hashedPassword = BCrypt.hashpw(newMem.password, salt);
         String alphabet= "abcdefghijklmnopqrstuvwxyz";
         String sessionKey = "";
         Random random = new Random();
