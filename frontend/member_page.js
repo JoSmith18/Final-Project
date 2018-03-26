@@ -99,3 +99,24 @@ function getParameterByID(id) {
     if (!results[2]) return '';
     return decodeURIComponent(results[2].replace(/\+/g, ' '));
 }
+
+function logout() {
+    var id = getParameterByID('id');
+    $.ajax({
+        url: 'http://localhost:8080/logout/' + id,
+        method: 'POST',
+        dataType: 'json',
+        crossDomain: true,
+        contentType: 'application/json',
+        mimeType: 'application/json',
+        error: function(data, status, er) {
+            alert('status: ' + status);
+        }
+    })
+        .then(function handleResponse(response) {
+            window.location.replace('login.html');
+        })
+        .catch(function catchError(err) {
+            console.log(err);
+        });
+}

@@ -87,12 +87,12 @@ public class MemberRepository {
         }
     }
 
-    public static Member deleteSessionKey(String id){
+    public static Member deleteSessionKey(Integer id){
         try {
             Connection conn = GetConnect.get();
             PreparedStatement preparedStatement = conn.prepareStatement(
-                    "UPDATE members SET sessionKey = null WHERE id = ?;");
-            preparedStatement.setInt(1,Integer.valueOf(id));
+                    "UPDATE members SET sessionKey = null WHERE id = ? RETURNING *");
+            preparedStatement.setInt(1,id);
             ResultSet resultSet = preparedStatement.executeQuery();
             resultSet.next();
             return new
@@ -105,6 +105,7 @@ public class MemberRepository {
                     resultSet.getString("sessionKey"));
         }
         catch (SQLException e){
+            System.out.println(e.getMessage());
             return null;
         }
     }

@@ -2,12 +2,11 @@ package com.example.backend;
 
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Random;
 
+@RestController
 public class LoginController {
     @Value("${app.salt}")
     private String salt;
@@ -31,4 +30,12 @@ public class LoginController {
             return null;
         }
     }
+
+    @CrossOrigin
+    @PostMapping("/logout/{id}")
+    public Boolean logout(@PathVariable Integer id){
+        System.out.println(id);
+        return (MemberRepository.deleteSessionKey(id) != null);
+    }
+
 }
