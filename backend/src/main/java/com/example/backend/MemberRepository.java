@@ -95,6 +95,7 @@ public class MemberRepository {
             preparedStatement.setInt(1,id);
             ResultSet resultSet = preparedStatement.executeQuery();
             resultSet.next();
+            conn.close();
             return new
                     Member(resultSet.getInt("id"),
                     resultSet.getString("memberName"),
@@ -115,13 +116,14 @@ public class MemberRepository {
         try {
             Connection conn = GetConnect.get();
             PreparedStatement preparedStatement = conn.prepareStatement(
-                    "UPDATE members SET sessionKey = ? WHERE memberName = ? and password = ? returning id, age, githubLink,gender"
+                    "UPDATE members SET sessionKey = ? WHERE memberName = ? and password = ? returning *"
             );
             preparedStatement.setString(1,sessionKey);
             preparedStatement.setString(2,memberName);
             preparedStatement.setString(3,password);
             ResultSet resultSet = preparedStatement.executeQuery();
             resultSet.next();
+            conn.close();
             return new Member(resultSet.getInt("id"),
                     memberName,
                     resultSet.getString("age"),
@@ -134,6 +136,23 @@ public class MemberRepository {
         }
         catch (SQLException e){
             return null;
+        }
+    }
+
+    public static boolean deleteMember(Integer id){
+        try {
+            Connection conn = GetConnect.get();
+            PreparedStatement preparedStatement = conn.prepareStatement(
+                    "DELETE FROM members WHERE id = ? CASCADE"
+            );
+            preparedStatement.setInt(1,id);
+            preparedStatement.execute();
+            conn.close();
+            return true;
+
+        }
+        catch (SQLException e){
+            return false;
         }
     }
 }
