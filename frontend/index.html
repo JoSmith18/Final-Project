@@ -9,125 +9,131 @@
 
 <body id="body">
     <div>
-        <a href="login.html">Login Page</a>
+        <h3 class="Links">
+            <a href="login.html">Login</a>
+        </h3>
     </div>
-    <div id="signUpDiv">
-        <form>
-            <fieldset>
-                <div class="form-group">
-                    <input class="form-control" type="text" size="30" id="memberName" placeholder="Full name">
-                    <br>
-                </div>
-                <div class="form-group">
-                    <select multiple="" class="form-control" id="gender">
-                        <option>Pick Your Gender</option>
-                        <option>Male</option>
-                        <option>Female</option>
-                        <option>Don't Want To Specify</option>
-                    </select>
+    <center>
+        <div id="signUpDiv" class="col-lg-4">
+            <form>
+                <fieldset>
+                    <div class="form-group ">
+                        <input class="form-control" type="text" size="30" id="memberName" placeholder="Full name">
+                        <br>
+                    </div>
+                    <div class="form-group">
+                        <select multiple="" class="form-control" id="gender">
+                            <option>Pick Your Gender</option>
+                            <option>Male</option>
+                            <option>Female</option>
+                            <option>Don't Want To Specify</option>
+                        </select>
 
-                </div>
-                <div class="form-group">
-                    <input class="form-control form-control-sm" type="text" placeholder="age" id="age">
-                </div>
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control form-control-sm" type="text" placeholder="Age" id="age">
+                    </div>
 
-                <div class="form-group">
-                    <input class="form-control" type="text" size="30" id="github" placeholder="Github Link">
-                    <br>
-                </div>
-                <div class="form-group">
-                    <input class="form-control" type="password" size="10" id="pwd" placeholder="Password">
-                </div>
+                    <div class="form-group">
+                        <input class="form-control" type="text" size="30" id="github" placeholder="Github Link">
+                        <br>
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" type="password" size="10" id="pwd" placeholder="Password">
+                    </div>
 
 
-            </fieldset>
-        </form>
-        <button class="btn btn-lg signup-btn" onclick="signUp()">Sign Up</button>
-    </div>
-    <div id="preferencesDiv" hidden>
-        <form>
-            <fieldset>
-                <div class="form-group">
-                    <label>Employment Status??</label>
-                    <select multiple="" class="form-control" id="answer1">
-                        <option>Employed</option>
-                        <option>Unemployed</option>
-                    </select>
-                    <br>
-                </div>
-                <div class="form-group">
-                    <label>What Gender Would You Like??</label>
-                    <select multiple="" class="form-control" id="answer2">
-                        <option>Male</option>
-                        <option>Female</option>
-                        <option>Don't Want To Specify</option>
-                    </select>
-                    <br>
-                </div>
-                <div class="form-group">
-                    <label>Which language would you prefer??</label>
-                    <select multiple="" class="form-control" id="answer3">
-                        <option>Python</option>
-                        <option>Java</option>
-                        <option>Clojure</option>
-                        <option>Ruby</option>
-                    </select>
-                    <br>
-                </div>
-                <div class="form-group">
-                    <label>Which One Better Represent What You Do?</label>
-                    <select multiple="" class="form-control" id="answer4">
-                        <option>Full stack Web developer</option>
-                        <option>Back-end Web developer</option>
-                        <option>Front-end Web developer</option>
-                    </select>
-                    <br>
-                </div>
-                <div class="form-group">
-                    <label>Years Since Learning to Code?</label>
-                    <select multiple="" class="form-control" id="answer5">
-                        <option>Less than a year</option>
-                        <option>1-3 Years</option>
-                        <option>4-8 Years</option>
-                        <option>9 and Above</option>
-                    </select>
-                    <br>
-                </div>
-                <div class="form-group">
-                    <label>How Did You Learn to Code?</label>
-                    <select multiple="" class="form-control" id="answer6">
-                        <option>Self-Taught</option>
-                        <option>College-Grad</option>
-                        <option>Bootcamp</option>
-                        <option>On-the-job training</option>
-                    </select>
-                    <br>
-                </div>
-                <div class="form-group">
-                    <label>Thoughts On Testing?</label>
-                    <select multiple="" class="form-control" id="answer7">
-                        <option>Not Important At All</option>
-                        <option>Do at your own leisure</option>
-                        <option>Not Finished Until You Test!!</option>
-                        <option>I Test First!!!</option>
-                    </select>
-                    <br>
-                </div>
-                <div class="form-group">
-                    <label>Years Since Started Job?</label>
-                    <select multiple="" class="form-control" id="answer8">
-                        <option>Haven't Started One Yet</option>
-                        <option>Less than a year</option>
-                        <option>1-3 Years</option>
-                        <option>4-8 Years</option>
-                        <option>9 and Above</option>
-                    </select>
-                    <br>
-                </div>
-            </fieldset>
-        </form>
-        <button class="btn btn-lg signup-btn" id="submitPrefsButton">Submit</button>
-    </div>
+                </fieldset>
+            </form>
+            <button class="btn btn-lg signup-btn" onclick="signUp()">Sign Up</button>
+        </div>
+    </center>
+    <center>
+        <div id="preferencesDiv" class="col-lg-4" hidden>
+            <form>
+                <fieldset>
+                    <div class="form-group">
+                        <label>Employment Status??</label>
+                        <select multiple="" class="form-control" id="answer1">
+                            <option>Employed</option>
+                            <option>Unemployed</option>
+                        </select>
+                        <br>
+                    </div>
+                    <div class="form-group">
+                        <label>What Gender Would You Like??</label>
+                        <select multiple="" class="form-control" id="answer2">
+                            <option>Male</option>
+                            <option>Female</option>
+                            <option>Don't Want To Specify</option>
+                        </select>
+                        <br>
+                    </div>
+                    <div class="form-group">
+                        <label>Which language would you prefer??</label>
+                        <select multiple="" class="form-control" id="answer3">
+                            <option>Python</option>
+                            <option>Java</option>
+                            <option>Clojure</option>
+                            <option>Ruby</option>
+                        </select>
+                        <br>
+                    </div>
+                    <div class="form-group">
+                        <label>Which One Better Represent What You Do?</label>
+                        <select multiple="" class="form-control" id="answer4">
+                            <option>Full stack Web developer</option>
+                            <option>Back-end Web developer</option>
+                            <option>Front-end Web developer</option>
+                        </select>
+                        <br>
+                    </div>
+                    <div class="form-group">
+                        <label>Years Since Learning to Code?</label>
+                        <select multiple="" class="form-control" id="answer5">
+                            <option>Less than a year</option>
+                            <option>1-3 Years</option>
+                            <option>4-8 Years</option>
+                            <option>9 and Above</option>
+                        </select>
+                        <br>
+                    </div>
+                    <div class="form-group">
+                        <label>How Did You Learn to Code?</label>
+                        <select multiple="" class="form-control" id="answer6">
+                            <option>Self-Taught</option>
+                            <option>College-Grad</option>
+                            <option>Bootcamp</option>
+                            <option>On-the-job training</option>
+                        </select>
+                        <br>
+                    </div>
+                    <div class="form-group">
+                        <label>Thoughts On Testing?</label>
+                        <select multiple="" class="form-control" id="answer7">
+                            <option>Not Important At All</option>
+                            <option>Do at your own leisure</option>
+                            <option>Not Finished Until You Test!!</option>
+                            <option>I Test First!!!</option>
+                        </select>
+                        <br>
+                    </div>
+                    <div class="form-group">
+                        <label>Years Since Started Job?</label>
+                        <select multiple="" class="form-control" id="answer8">
+                            <option>Haven't Started One Yet</option>
+                            <option>Less than a year</option>
+                            <option>1-3 Years</option>
+                            <option>4-8 Years</option>
+                            <option>9 and Above</option>
+                        </select>
+                        <br>
+                    </div>
+                </fieldset>
+            </form>
+            <button class="btn btn-lg signup-btn" id="submitPrefsButton">Submit</button>
+        </div>
+    </center>
 
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>

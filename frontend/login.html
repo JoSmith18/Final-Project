@@ -9,22 +9,26 @@
 
 <body id="body">
     <div>
-        <a href="index.html">Sign Up Page</a>
+        <h3 class="Links">
+            <a href="index.html">Sign-Up</a>
+        </h3>
     </div>
-    <div id="signUpDiv">
-        <form>
-            <fieldset>
-                <div class="form-group">
-                    <input class="form-control" type="text" size="30" id="memberName" placeholder="Full name">
-                    <br>
-                </div>
-                <div class="form-group">
-                    <input class="form-control" type="password" size="10" id="pwd" placeholder="Password">
-                </div>
-            </fieldset>
-        </form>
-        <button class="btn btn-lg signup-btn" onclick="Login()">Login</button>
-    </div>
+    <center>
+        <div id="signUpDiv" class="col-lg-4">
+            <form>
+                <fieldset>
+                    <div class="form-group">
+                        <input class="form-control" type="text" size="30" id="memberName" placeholder="Full name">
+                        <br>
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" type="password" size="10" id="pwd" placeholder="Password">
+                    </div>
+                </fieldset>
+            </form>
+            <button class="btn btn-lg signup-btn" onclick="Login()">Login</button>
+        </div>
+    </center>
 
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>

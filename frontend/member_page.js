@@ -14,7 +14,66 @@ function makePersonalInfo() {
     );
 }
 
+function returnCheck(user, matches) {
+    if (user == matches) {
+        return '  <i class="fas fa-check" style="color:#B58900"/>';
+    } else {
+        return '';
+    }
+}
+
+function findPercent() {
+    var count = 0;
+    for (var i = 0; i < MATCH_DATA.length; i++) {
+        if (
+            PAGE_DATA.preferences.answer1 == MATCH_DATA[i].preferences.answer1
+        ) {
+            count += 20;
+        }
+
+        if (
+            PAGE_DATA.preferences.answer2 != MATCH_DATA[i].preferences.answer2
+        ) {
+            count += 20;
+        }
+
+        if (
+            PAGE_DATA.preferences.answer3 == MATCH_DATA[i].preferences.answer3
+        ) {
+            count += 10;
+        }
+
+        if (
+            PAGE_DATA.preferences.answer4 == MATCH_DATA[i].preferences.answer4
+        ) {
+            count += 10;
+        }
+        if (
+            PAGE_DATA.preferences.answer5 == MATCH_DATA[i].preferences.answer5
+        ) {
+            count += 10;
+        }
+        if (
+            PAGE_DATA.preferences.answer6 == MATCH_DATA[i].preferences.answer6
+        ) {
+            count += 10;
+        }
+        if (
+            PAGE_DATA.preferences.answer7 == MATCH_DATA[i].preferences.answer7
+        ) {
+            count += 10;
+        }
+        if (
+            PAGE_DATA.preferences.answer8 == MATCH_DATA[i].preferences.answer8
+        ) {
+            count += 10;
+        }
+        return count;
+    }
+}
+
 function findMatches() {
+    var percent = findPercent();
     matches =
         '<h1>You Can Thank Us With A Hug We Think You And These Matches   Will Not Have Bugs</h1> ';
     if (MATCH_DATA.length == 0) {
@@ -24,36 +83,79 @@ function findMatches() {
     for (var i = 0; i < MATCH_DATA.length; i++) {
         matches +=
             '<div class="card border-primary" style="max-width: 20rem;">' +
-            '<div class="card-header">' +
+            '<div class="card-header"><h2>' +
             MATCH_DATA[i].member.memberName +
+            '</h2> Match Percent: ' +
+            percent +
+            '% ' +
             '</div>' +
             '<div class="card-body">' +
             '<h4 class="card-title"><a href=' +
             MATCH_DATA[i].member.githubLink +
             ' target="_blank">Link To GitHub</a></h4>' +
-            '<p class="card-text">Answer One:' +
+            '<p class="card-text">Employment Status: ' +
             MATCH_DATA[i].preferences.answer1 +
+            '&nbsp' +
+            returnCheck(
+                MATCH_DATA[i].preferences.answer1,
+                MY_DATA.preferences.answer1
+            ) +
             '</p>' +
-            '<p class="card-text">Answer Two:' +
+            '<p class="card-text">Prefered Gender: ' +
             MATCH_DATA[i].preferences.answer2 +
+            '&nbsp' +
+            returnCheck(
+                MATCH_DATA[i].preferences.answer2,
+                MY_DATA.member.gender
+            ) +
             '</p>' +
-            '<p class="card-text">Answer Three:' +
+            '<p class="card-text">Prefered Language: ' +
             MATCH_DATA[i].preferences.answer3 +
+            '&nbsp' +
+            returnCheck(
+                MATCH_DATA[i].preferences.answer3,
+                MY_DATA.preferences.answer3
+            ) +
             '</p>' +
-            '<p class="card-text">Answer Four:' +
+            '<p class="card-text">Developer Type: ' +
             MATCH_DATA[i].preferences.answer4 +
+            '&nbsp' +
+            returnCheck(
+                MATCH_DATA[i].preferences.answer4,
+                MY_DATA.preferences.answer4
+            ) +
             '</p>' +
-            '<p class="card-text">Answer Five:' +
+            '<p class="card-text">Started Coding: ' +
             MATCH_DATA[i].preferences.answer5 +
+            '&nbsp' +
+            returnCheck(
+                MATCH_DATA[i].preferences.answer5,
+                MY_DATA.preferences.answer5
+            ) +
             '</p>' +
-            '<p class="card-text">Answer Six:' +
+            '<p class="card-text">Learned Code Through: ' +
             MATCH_DATA[i].preferences.answer6 +
+            '&nbsp' +
+            returnCheck(
+                MATCH_DATA[i].preferences.answer6,
+                MY_DATA.preferences.answer6
+            ) +
             '</p>' +
-            '<p class="card-text">Answer Seven:' +
+            '<p class="card-text">Thoughts on Testing: ' +
             MATCH_DATA[i].preferences.answer7 +
+            '&nbsp' +
+            returnCheck(
+                MATCH_DATA[i].preferences.answer7,
+                MY_DATA.preferences.answer7
+            ) +
             '</p>' +
-            '<p class="card-text">Answer Eight:' +
+            '<p class="card-text">Years Since Working in Industry:' +
             MATCH_DATA[i].preferences.answer8 +
+            '&nbsp' +
+            returnCheck(
+                MATCH_DATA[i].preferences.answer8,
+                MY_DATA.preferences.answer8
+            ) +
             '</p>' +
             '</div></div>';
     }
@@ -66,9 +168,10 @@ function setFeed(response) {
     $('.jumbotron').html(makePersonalInfo());
 }
 
-function setMatches(response) {
+function setMatches(myResponse, response) {
+    MY_DATA = myResponse;
     MATCH_DATA = response;
-    console.log(MATCH_DATA);
+    console.log(MY_DATA);
     $('#matches').html(findMatches());
 }
 
@@ -77,10 +180,11 @@ $(function() {
     console.log(id);
     $.get('http://localhost:8080/memID/' + id)
         .then(function handleResponse(response) {
+            var myResponse = response;
             setFeed(response);
             $.get('http://localhost:8080/getMatches/' + id)
                 .then(function handleResponse(response) {
-                    setMatches(response);
+                    setMatches(myResponse, response);
                 })
                 .catch(function(err) {
                     // console.log(err);
