@@ -31,11 +31,6 @@ public class LoginController {
         }
     }
 
-    @CrossOrigin
-    @PostMapping("/logout/{id}")
-    public Boolean logout(@PathVariable Integer id){
-        System.out.println(id);
-        return (MemberRepository.deleteSessionKey(id) != null);
-    }
+
 
 }

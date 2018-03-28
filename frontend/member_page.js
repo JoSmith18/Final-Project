@@ -57,7 +57,7 @@ function findPercent(i) {
 
 function findMatches() {
     matches =
-        '<h1>You Can Thank Us With A Hug We Think You And These Matches   Will Not Have Bugs</h1> ';
+        '<center><h1>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp Match Percentage Relates to Common Preferences &nbsp <i class="fas fa-exclamation"></i></h1></center>';
     if (MATCH_DATA.length == 0) {
         return '<h1>NO MATCHES HAVE BEEN FOUND</h1><br><h1>WILL BE UPDATED ONCE WE FIND SOMEONE</h1><br><h1>WHO TALKS YOUR LOVE LANGUAGE</h1>';
     }
@@ -65,7 +65,7 @@ function findMatches() {
     for (var i = 0; i < MATCH_DATA.length; i++) {
         var percent = findPercent(i);
         matches +=
-            '<div class="col-lg-4"><div class="card border-primary">' +
+            '<div class="col-lg-6"><div class="card border-primary">' +
             '<div class="card-header"><h2>' +
             MATCH_DATA[i].member.memberName +
             '</h2><h3>Age&nbsp' +
@@ -156,13 +156,11 @@ function setFeed(response) {
 function setMatches(myResponse, response) {
     MY_DATA = myResponse;
     MATCH_DATA = response;
-    console.log(MY_DATA);
     $('#matches').html(findMatches());
 }
 
 $(function() {
     var id = getParameterByID('id');
-    console.log(id);
     $.get('http://localhost:8080/memID/' + id)
         .then(function handleResponse(response) {
             var myResponse = response;
@@ -171,13 +169,9 @@ $(function() {
                 .then(function handleResponse(response) {
                     setMatches(myResponse, response);
                 })
-                .catch(function(err) {
-                    // console.log(err);
-                });
+                .catch(function(err) {});
         })
-        .catch(function(err) {
-            // console.log(err);
-        });
+        .catch(function(err) {});
 });
 
 function getParameterByID(id) {
@@ -206,9 +200,7 @@ function logout() {
         .then(function handleResponse(response) {
             window.location.replace('login.html');
         })
-        .catch(function catchError(err) {
-            console.log(err);
-        });
+        .catch(function catchError(err) {});
 }
 
 function deleteUser() {
@@ -231,9 +223,7 @@ function deleteUser() {
                 alert('status: Error');
             }
         })
-        .catch(function catchError(err) {
-            console.log(err);
-        });
+        .catch(function catchError(err) {});
 }
 
 function updatePreferences(PAGE_DATA) {
@@ -280,7 +270,5 @@ function submitUpdatedPrefsButton(event) {
                 alert('status: Error');
             }
         })
-        .catch(function catchError(err) {
-            console.log(err);
-        });
+        .catch(function catchError(err) {});
 }

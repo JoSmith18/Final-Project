@@ -82,7 +82,6 @@ try {
         preparedStatement.setString(7,answer7);
         preparedStatement.setString(8,answer8);
         preparedStatement.setInt(9,memID);
-        System.out.println(preparedStatement);
         ResultSet resultSet = preparedStatement.executeQuery();
         resultSet.next();
         conn.close();

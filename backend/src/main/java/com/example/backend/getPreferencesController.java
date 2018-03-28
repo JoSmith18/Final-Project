@@ -46,14 +46,12 @@ public class getPreferencesController {
     @CrossOrigin(allowedHeaders = "*", allowCredentials = "true")
     public ArrayList<MemberInfo> getMatches(@PathVariable Integer id){
         MemberInfo memInformation = getFeed(id);
-        System.out.println(memInformation.preferences.answer2);
         ArrayList<MemberInfo> matches = new ArrayList<MemberInfo>();
         ArrayList<Member> firstCut = MemberRepository.membersByGender(memInformation.preferences.answer2);
         for (Member m:firstCut
              ) {
             matches.add(getFeed(m.id));
         }
-        System.out.println(matches);
         return matches;
     }
 }

@@ -1,13 +1,4 @@
 function signUp() {
-    console.log(
-        JSON.stringify({
-            memberName: $('#memberName').val(),
-            gender: $('#gender option:selected').text(),
-            age: $('#age').val(),
-            githubLink: $('#githubLink').val(),
-            password: $('#pwd').val()
-        })
-    );
     $.ajax({
         url: 'http://localhost:8080/SignUp',
         method: 'POST',
@@ -27,7 +18,6 @@ function signUp() {
         }
     })
         .then(function handleFeedResponse(response) {
-            console.log(response);
             var data = response;
             $('#preferencesDiv').removeAttr('hidden');
             $('#signUpDiv').attr('hidden', true);
@@ -45,9 +35,7 @@ function signUp() {
                     '</h3><h5>Answer Following Questions!!</h5></center></div>'
             );
         })
-        .catch(function handleFeedError(response) {
-            console.log(response);
-        });
+        .catch(function handleFeedError(response) {});
 }
 
 function submitPrefs(id, age, memberName, githubLink) {
@@ -76,7 +64,5 @@ function submitPrefs(id, age, memberName, githubLink) {
         .then(function handleFeedResponse(response) {
             window.location.replace('member_page.html?id=' + response.memID);
         })
-        .catch(function handleFeedError(response) {
-            console.log(response);
-        });
+        .catch(function handleFeedError(response) {});
 }
