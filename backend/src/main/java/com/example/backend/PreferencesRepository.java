@@ -27,6 +27,7 @@ public class PreferencesRepository {
                         resultSet.getString("answer7"),
                         resultSet.getString("answer8")));
             }
+            conn.close();
             return allPreferences;
         }
         catch (SQLException e){
@@ -55,6 +56,7 @@ public class PreferencesRepository {
             preparedStatement.setString(9,answer8);
             ResultSet resultSet = preparedStatement.executeQuery();
             resultSet.next();
+            conn.close();
             return new Preferences(resultSet.getInt("id"),memID,answer1,answer2,answer3,answer4,answer5,answer6,answer7,answer8);
         }
         catch (SQLException e){
@@ -83,6 +85,7 @@ try {
         System.out.println(preparedStatement);
         ResultSet resultSet = preparedStatement.executeQuery();
         resultSet.next();
+        conn.close();
         return new Preferences(resultSet.getInt("id"),memID,answer1,answer2,answer3,answer4,answer5,answer6,answer7,answer8);
     }
         catch (SQLException e) {

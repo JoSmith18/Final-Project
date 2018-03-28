@@ -11,7 +11,7 @@ function Login() {
         contentType: 'application/json',
         mimeType: 'application/json',
         error: function(data, status, er) {
-            alert('status: ' + status);
+            alert('UserName or Password incorrect please try again!!');
         }
     })
         .then(function handleFeedResponse(response) {

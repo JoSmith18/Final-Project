@@ -22,58 +22,40 @@ function returnCheck(user, matches) {
     }
 }
 
-function findPercent() {
+function findPercent(i) {
     var count = 0;
-    for (var i = 0; i < MATCH_DATA.length; i++) {
-        if (
-            PAGE_DATA.preferences.answer1 == MATCH_DATA[i].preferences.answer1
-        ) {
-            count += 20;
-        }
 
-        if (
-            PAGE_DATA.preferences.answer2 != MATCH_DATA[i].preferences.answer2
-        ) {
-            count += 20;
-        }
-
-        if (
-            PAGE_DATA.preferences.answer3 == MATCH_DATA[i].preferences.answer3
-        ) {
-            count += 10;
-        }
-
-        if (
-            PAGE_DATA.preferences.answer4 == MATCH_DATA[i].preferences.answer4
-        ) {
-            count += 10;
-        }
-        if (
-            PAGE_DATA.preferences.answer5 == MATCH_DATA[i].preferences.answer5
-        ) {
-            count += 10;
-        }
-        if (
-            PAGE_DATA.preferences.answer6 == MATCH_DATA[i].preferences.answer6
-        ) {
-            count += 10;
-        }
-        if (
-            PAGE_DATA.preferences.answer7 == MATCH_DATA[i].preferences.answer7
-        ) {
-            count += 10;
-        }
-        if (
-            PAGE_DATA.preferences.answer8 == MATCH_DATA[i].preferences.answer8
-        ) {
-            count += 10;
-        }
-        return count;
+    if (PAGE_DATA.preferences.answer1 == MATCH_DATA[i].preferences.answer1) {
+        count += 20;
     }
+
+    if (PAGE_DATA.preferences.answer2 != MATCH_DATA[i].preferences.answer2) {
+        count += 20;
+    }
+
+    if (PAGE_DATA.preferences.answer3 == MATCH_DATA[i].preferences.answer3) {
+        count += 10;
+    }
+
+    if (PAGE_DATA.preferences.answer4 == MATCH_DATA[i].preferences.answer4) {
+        count += 10;
+    }
+    if (PAGE_DATA.preferences.answer5 == MATCH_DATA[i].preferences.answer5) {
+        count += 10;
+    }
+    if (PAGE_DATA.preferences.answer6 == MATCH_DATA[i].preferences.answer6) {
+        count += 10;
+    }
+    if (PAGE_DATA.preferences.answer7 == MATCH_DATA[i].preferences.answer7) {
+        count += 10;
+    }
+    if (PAGE_DATA.preferences.answer8 == MATCH_DATA[i].preferences.answer8) {
+        count += 10;
+    }
+    return count;
 }
 
 function findMatches() {
-    var percent = findPercent();
     matches =
         '<h1>You Can Thank Us With A Hug We Think You And These Matches   Will Not Have Bugs</h1> ';
     if (MATCH_DATA.length == 0) {
@@ -81,11 +63,14 @@ function findMatches() {
     }
 
     for (var i = 0; i < MATCH_DATA.length; i++) {
+        var percent = findPercent(i);
         matches +=
-            '<div class="card border-primary" style="max-width: 20rem;">' +
+            '<div class="col-lg-4"><div class="card border-primary" style="max-width: 20rem;">' +
             '<div class="card-header"><h2>' +
             MATCH_DATA[i].member.memberName +
-            '</h2> Match Percent: ' +
+            '&nbsp' +
+            MATCH_DATA[i].member.age +
+            ' </h2> Match Percent: ' +
             percent +
             '% ' +
             '</div>' +
@@ -157,7 +142,7 @@ function findMatches() {
                 MY_DATA.preferences.answer8
             ) +
             '</p>' +
-            '</div></div>';
+            '</div></div></div';
     }
     return matches;
 }
