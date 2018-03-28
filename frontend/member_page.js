@@ -65,12 +65,12 @@ function findMatches() {
     for (var i = 0; i < MATCH_DATA.length; i++) {
         var percent = findPercent(i);
         matches +=
-            '<div class="col-lg-4"><div class="card border-primary" style="max-width: 20rem;">' +
+            '<div class="col-lg-4"><div class="card border-primary">' +
             '<div class="card-header"><h2>' +
             MATCH_DATA[i].member.memberName +
-            '&nbsp' +
+            '</h2><h3>Age&nbsp' +
             MATCH_DATA[i].member.age +
-            ' </h2> Match Percent: ' +
+            '  </h3>Match Percent: ' +
             percent +
             '% ' +
             '</div>' +
@@ -142,7 +142,7 @@ function findMatches() {
                 MY_DATA.preferences.answer8
             ) +
             '</p>' +
-            '</div></div></div';
+            '</div></div></div>';
     }
     return matches;
 }
