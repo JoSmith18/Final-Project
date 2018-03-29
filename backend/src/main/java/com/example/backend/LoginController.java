@@ -14,14 +14,7 @@ public class LoginController {
     @PostMapping("/Login")
     public Member login(@RequestBody Login isUser){
         String hashedPassword = BCrypt.hashpw(isUser.password,salt);
-        String alphabet= "abcdefghijklmnopqrstuvwxyz";
-        String sessionKey = "";
-        Random random = new Random();
-        int randomLen = 12+random.nextInt(9);
-        for (int i = 0; i < randomLen; i++) {
-            char c = alphabet.charAt(random.nextInt(26));
-            sessionKey+=c;
-        }
+        String sessionKey = new SignUpController().createSessionKey();
         Member newMember = MemberRepository.isMember(sessionKey, isUser.memberName, hashedPassword);
         if (newMember != null) {
             return newMember;
