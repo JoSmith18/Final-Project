@@ -160,4 +160,27 @@ public class MemberRepository {
             return false;
         }
     }
+
+    public static Member memberById(Integer id){
+        try {
+            Connection conn = GetConnect.get();
+            PreparedStatement preparedStatement = conn.prepareStatement("SELECT * FROM members WHERE id = ?");
+            preparedStatement.setInt(1, id);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            conn.close();
+            return new Member(resultSet.getInt("id"),
+                    resultSet.getString("memberName"),
+                    resultSet.getString("age"),
+                    resultSet.getString("phoneNumber"),
+                    resultSet.getString("githubLink"),
+                    resultSet.getString("password"),
+                    resultSet.getString("gender"),
+                    resultSet.getString("sessionKey")
+            );
+        }
+        catch (SQLException e){
+            System.out.println(e.getMessage());
+            return null;
+        }
+    }
 }

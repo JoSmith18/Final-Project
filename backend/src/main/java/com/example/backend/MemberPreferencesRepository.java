@@ -19,6 +19,7 @@ public class MemberPreferencesRepository {
                         Member(resultSet.getInt("id"),
                         resultSet.getString("memberName"),
                         resultSet.getString("age"),
+                        resultSet.getString("phoneNumber"),
                         resultSet.getString("githubLink"),
                         resultSet.getString("password"),
                         resultSet.getString("gender"),

@@ -1,4 +1,14 @@
 function signUp() {
+    console.log(
+        JSON.stringify({
+            memberName: $('#memberName').val(),
+            gender: $('#gender option:selected').text(),
+            age: $('#age').val(),
+            phoneNumber: $('#phoneNumber').val(),
+            githubLink: $('#github').val(),
+            password: $('#pwd').val()
+        })
+    );
     $.ajax({
         url: 'http://localhost:8080/SignUp',
         method: 'POST',

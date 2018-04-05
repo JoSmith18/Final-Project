@@ -141,7 +141,9 @@ function findMatches() {
                 MATCH_DATA[i].preferences.answer8,
                 MY_DATA.preferences.answer8
             ) +
-            '</p>' +
+            '</p><button class="btn btn-md btn-danger" onclick="notifyMatch(' +
+            MATCH_DATA[i].member.phoneNumber +
+            ')style="border-color: white">Notify That They Speak Your Language</button>' +
             '</div></div></div>';
     }
     return matches;
@@ -235,6 +237,30 @@ function updatePreferences(PAGE_DATA) {
     $('#answer6').val(PAGE_DATA.preferences.answer6);
     $('#answer7').val(PAGE_DATA.preferences.answer7);
     $('#answer8').val(PAGE_DATA.preferences.answer8);
+}
+
+function notifyMatch(phoneNum, event) {
+    var id = getParameterByID('id');
+    $.ajax({
+        async: true,
+        url: 'http://localhost:8080/notifyMatch/' + id,
+        method: 'POST',
+        dataType: 'json',
+        crossDomain: true,
+        data: JSON.stringify({
+            phoneNumber: phoneNum
+        }),
+        contentType: 'application/json',
+        mimeType: 'application/json'
+    })
+        .then(function handleResponse(response) {
+            if (response) {
+                window.location.replace('member_page.html?id=' + id);
+            } else {
+                alert('status: Error');
+            }
+        })
+        .catch(function catchError(err) {});
 }
 
 function newPrefs() {

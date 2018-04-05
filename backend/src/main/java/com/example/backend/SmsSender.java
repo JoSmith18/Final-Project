@@ -12,11 +12,11 @@ import com.twilio.type.PhoneNumber;
         public static final String AUTH_TOKEN =
                 "f83e6c575ccd3dff4f9d6af315dd4a8f";
 
-        public void sendNotification(Member sender,Member receiver) {
+        public void sendNotification(Member sender,String phoneNumber) {
             Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
 
             Message message = Message
-                    .creator(new PhoneNumber("+"+receiver.phoneNumber), // to
+                    .creator(new PhoneNumber("+" + phoneNumber), // to
                             new PhoneNumber("+16626256003"), // from
                             sender.memberName +" has notified you as a possible match!!")
                     .create();

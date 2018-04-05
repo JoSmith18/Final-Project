@@ -27,6 +27,7 @@ public class SignUpController {
     @CrossOrigin(allowedHeaders="*",allowCredentials="true")
     @PostMapping("/SignUp")
     public Member signUp(@RequestBody SignUp newMem) {
+        System.out.println(newMem.phoneNumber);
         String hashedPassword = BCrypt.hashpw(newMem.password, salt);
 
         String sessionKey = createSessionKey();
