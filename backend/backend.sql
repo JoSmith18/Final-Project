@@ -3,6 +3,7 @@ CREATE TABLE members (
     memberName text,
     gender text,
     age text,
+    phoneNumber text,
     githubLink text,
     password Varchar,
     sessionKey text

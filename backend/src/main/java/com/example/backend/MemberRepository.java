@@ -20,6 +20,7 @@ public class MemberRepository {
                         Member(resultSet.getInt("id"),
                         resultSet.getString("memberName"),
                         resultSet.getString("age"),
+                        resultSet.getString("phoneNumber"),
                         resultSet.getString("githubLink"),
                         resultSet.getString("password"),
                         resultSet.getString("gender"),
@@ -33,7 +34,7 @@ public class MemberRepository {
         }
     }
 
-    public static Member insertMember(String memberName, String age, String githubLink, String password, String gender,String sessionKey){
+    public static Member insertMember(String memberName, String age, String phoneNumber, String githubLink, String password, String gender,String sessionKey){
         try {
             Connection conn = GetConnect.get();
             PreparedStatement preparedStatement = conn.prepareStatement(
@@ -52,7 +53,7 @@ public class MemberRepository {
             resultSet.next();
             conn.close();
             return new Member(resultSet.getInt("id"),memberName,
-                    age,
+                    age, phoneNumber,
                     githubLink,password,gender,sessionKey);
         }
         catch (SQLException e){
@@ -74,6 +75,7 @@ public class MemberRepository {
                         Member(resultSet.getInt("id"),
                         resultSet.getString("memberName"),
                         resultSet.getString("age"),
+                        resultSet.getString("phoneNumber"),
                         resultSet.getString("githubLink"),
                         resultSet.getString("password"),
                         resultSet.getString("gender"),
@@ -100,6 +102,7 @@ public class MemberRepository {
                     Member(resultSet.getInt("id"),
                     resultSet.getString("memberName"),
                     resultSet.getString("age"),
+                    resultSet.getString("phoneNumber"),
                     resultSet.getString("githubLink"),
                     resultSet.getString("password"),
                     resultSet.getString("gender"),
@@ -127,6 +130,7 @@ public class MemberRepository {
             return new Member(resultSet.getInt("id"),
                     memberName,
                     resultSet.getString("age"),
+                    resultSet.getString("phoneNumber"),
                     resultSet.getString("githubLink"),
                     password,
                     resultSet.getString("gender"),

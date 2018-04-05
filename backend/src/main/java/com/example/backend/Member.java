@@ -8,14 +8,17 @@ public class Member {
     public String password;
     public String gender;
     public String sessionKey;
+    public String phoneNumber;
 
-    public Member(Integer id, String memberName, String age,String githubLink, String password,String gender, String sessionKey){
+    public Member(Integer id, String memberName, String age, String phoneNumber, String githubLink, String password,String gender, String sessionKey){
         this.id = id;
         this.memberName = memberName;
         this.age = age;
+        this.phoneNumber = phoneNumber;
         this.githubLink = githubLink;
         this.password = password;
         this.gender = gender;
         this.sessionKey = sessionKey;
+
     }
 }

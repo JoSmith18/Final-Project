@@ -34,6 +34,7 @@ public class SignUpController {
         Member newMember = MemberRepository.insertMember(
                 newMem.memberName,
                 newMem.age,
+                newMem.phoneNumber,
                 newMem.githubLink,
                 hashedPassword,
                 newMem.gender,

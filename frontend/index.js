@@ -8,6 +8,7 @@ function signUp() {
             memberName: $('#memberName').val(),
             gender: $('#gender option:selected').text(),
             age: $('#age').val(),
+            phoneNumber: $('#phoneNumber').val(),
             githubLink: $('#github').val(),
             password: $('#pwd').val()
         }),
