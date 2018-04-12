@@ -39,15 +39,16 @@ public class MemberRepository {
             Connection conn = GetConnect.get();
             PreparedStatement preparedStatement = conn.prepareStatement(
                     "INSERT INTO members (" +
-                            "memberName,age,githubLink,password, gender, sessionKey) " +
-                            "VALUES (?,?,?,?,?,?)" +
+                            "memberName,age,phoneNumber,githubLink,password, gender, sessionKey) " +
+                            "VALUES (?,?,?,?,?,?,?)" +
                             "RETURNING id");
             preparedStatement.setString(1,memberName);
             preparedStatement.setString(2,age);
-            preparedStatement.setString(3,githubLink);
-            preparedStatement.setString(4,password);
-            preparedStatement.setString(5,gender);
-            preparedStatement.setString(6,sessionKey);
+            preparedStatement.setString(3,phoneNumber);
+            preparedStatement.setString(4,githubLink);
+            preparedStatement.setString(5,password);
+            preparedStatement.setString(6,gender);
+            preparedStatement.setString(7,sessionKey);
 
             ResultSet resultSet = preparedStatement.executeQuery();
             resultSet.next();
@@ -167,6 +168,7 @@ public class MemberRepository {
             PreparedStatement preparedStatement = conn.prepareStatement("SELECT * FROM members WHERE id = ?");
             preparedStatement.setInt(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
+            resultSet.next();
             conn.close();
             return new Member(resultSet.getInt("id"),
                     resultSet.getString("memberName"),

@@ -7,13 +7,13 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class MemberController {
-    @CrossOrigin(allowedHeaders="*",allowCredentials="true")
+    @CrossOrigin()
     @PostMapping("/delete/{id}")
     public boolean deleteMember(@PathVariable Integer id ){
         return MemberRepository.deleteMember(id);
     }
 
-    @CrossOrigin(allowedHeaders="*",allowCredentials="true")
+    @CrossOrigin()
     @PostMapping("/update/{id}")
     public static Preferences updatePreferences(@PathVariable Integer id, @RequestBody Preferences newPrefs){
        return PreferencesRepository.updatePreferences(id,newPrefs.answer1,

@@ -143,7 +143,7 @@ function findMatches() {
             ) +
             '</p><button class="btn btn-md btn-danger" onclick="notifyMatch(' +
             MATCH_DATA[i].member.phoneNumber +
-            ')style="border-color: white">Notify That They Speak Your Language</button>' +
+            ')" style="border-color: white">Notify That They Speak Your Language</button>' +
             '</div></div></div>';
     }
     return matches;

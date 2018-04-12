@@ -10,7 +10,7 @@ import java.util.Random;
 public class LoginController {
     @Value("${app.salt}")
     private String salt;
-    @CrossOrigin(allowedHeaders="*",allowCredentials="true")
+    @CrossOrigin()
     @PostMapping("/Login")
     public Member login(@RequestBody Login isUser){
         String hashedPassword = BCrypt.hashpw(isUser.password,salt);

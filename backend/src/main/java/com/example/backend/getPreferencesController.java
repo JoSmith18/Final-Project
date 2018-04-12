@@ -8,7 +8,7 @@ import java.util.Arrays;
 @RestController
 public class getPreferencesController {
     @PostMapping("/submitPrefs")
-    @CrossOrigin(allowedHeaders = "*", allowCredentials = "true")
+    @CrossOrigin()
     public Preferences submitPrefs(@RequestBody Answers answers) {
         Preferences newPrefs = PreferencesRepository.insertPreferences(answers.ID, answers.answer1, answers.answer2, answers.answer3,
                 answers.answer4, answers.answer5, answers.answer6, answers.answer7, answers.answer8);
@@ -22,7 +22,7 @@ public class getPreferencesController {
     }
 
     @GetMapping("/memID/{id}")
-    @CrossOrigin(allowedHeaders = "*", allowCredentials = "true")
+    @CrossOrigin()
     public MemberInfo getFeed(@PathVariable Integer id){
         Member memInfo = null;
         Preferences preferencesInfo = null;
@@ -43,13 +43,14 @@ public class getPreferencesController {
     }
 
     @GetMapping("/getMatches/{id}")
-    @CrossOrigin(allowedHeaders = "*", allowCredentials = "true")
+    @CrossOrigin()
     public ArrayList<MemberInfo> getMatches(@PathVariable Integer id){
         MemberInfo memInformation = getFeed(id);
         ArrayList<MemberInfo> matches = new ArrayList<MemberInfo>();
         ArrayList<Member> firstCut = MemberRepository.membersByGender(memInformation.preferences.answer2);
         for (Member m:firstCut
              ) {
+
             matches.add(getFeed(m.id));
         }
         return matches;

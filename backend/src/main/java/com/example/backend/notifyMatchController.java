@@ -7,9 +7,9 @@ import java.util.ArrayList;
 @RestController
 public class notifyMatchController {
 
-    @CrossOrigin(allowedHeaders="*",allowCredentials="true")
+    @CrossOrigin()
     @PostMapping("/notifyMatch/{id}")
-    public void notifyMatch(@PathVariable Integer id, @RequestParam String phoneNumber){
-        new SmsSender().sendNotification(MemberRepository.memberById(id), phoneNumber);
+    public void notifyMatch(@PathVariable Integer id, @RequestBody String phoneNumber){
+
     }
 }
