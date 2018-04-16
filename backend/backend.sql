@@ -20,16 +20,8 @@ answer6 text,
 answer7 text,
 answer8 text);
 
-CREATE VIEW memberPreferences 
-AS SELECT memberId,
-memberName, 
-answer1 as Answer1, 
-answer2 as Answer2,
-answer3 as Answer3,
-answer4 as Answer4,
-answer5 as Answer5,
-answer6 as Answer6,
-answer7 as Answer7,
-answer8 as Answer8
-FROM members, preferences 
-GROUP BY memberId,memberName,answer1,answer2,answer3,answer4,answer5,answer6,answer7,answer8;
+CREATE TABLE matchBox (id Serial Unique Primary Key,
+senderID Integer references members (id) ON DELETE CASCADE,
+receiverID Integer references members (id) ON DELETE CASCADE,
+ message Text,
+ postedAt timestamp)

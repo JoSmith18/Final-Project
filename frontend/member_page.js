@@ -142,8 +142,8 @@ function findMatches() {
                 MY_DATA.preferences.answer8
             ) +
             '</p><button class="btn btn-md btn-danger" onclick="notifyMatch(' +
-            MATCH_DATA[i].member.phoneNumber +
-            ')" style="border-color: white">Notify That They Speak Your Language</button>' +
+            MATCH_DATA[i].member.id +
+            ')" style="border-color: white">Send Message in MatchBox</button>' +
             '</div></div></div>';
     }
     return matches;
@@ -209,7 +209,6 @@ function deleteUser() {
     var id = getParameterByID('id');
     $.ajax({
         async: true,
-        data: { _method: 'delete' },
         url: 'http://localhost:8080/delete/' + id,
         method: 'POST',
         dataType: 'json',
@@ -239,7 +238,7 @@ function updatePreferences(PAGE_DATA) {
     $('#answer8').val(PAGE_DATA.preferences.answer8);
 }
 
-function notifyMatch(phoneNum, event) {
+function notifyMatch(receiverid, event) {
     var id = getParameterByID('id');
     $.ajax({
         async: true,
@@ -248,19 +247,18 @@ function notifyMatch(phoneNum, event) {
         dataType: 'json',
         crossDomain: true,
         data: JSON.stringify({
-            phoneNumber: phoneNum
+            senderId: id,
+            receiverId: receiverid
         }),
         contentType: 'application/json',
         mimeType: 'application/json'
     })
         .then(function handleResponse(response) {
-            if (response) {
-                window.location.replace('member_page.html?id=' + id);
-            } else {
-                alert('status: Error');
-            }
+            window.location.replace('match_box.html?id=' + id);
         })
-        .catch(function catchError(err) {});
+        .catch(function catchError(err) {
+            alert('status: Error');
+        });
 }
 
 function newPrefs() {
