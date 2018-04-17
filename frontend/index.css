@@ -7,6 +7,11 @@
     margin-top: 12px;
 }
 
-.card {
-    min-height: 65%;
+.matchBoxCard {
+    min-width: 30%;
+    max-width: 80%;
+}
+
+.matchBoxContainer {
+    padding-top: 15px;
 }

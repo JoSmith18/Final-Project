@@ -242,19 +242,15 @@ function notifyMatch(receiverid, event) {
     var id = getParameterByID('id');
     $.ajax({
         async: true,
-        url: 'http://localhost:8080/notifyMatch/' + id,
+        url: 'http://localhost:8080/notifyMatch/' + id + '/' + receiverid,
         method: 'POST',
         dataType: 'json',
         crossDomain: true,
-        data: JSON.stringify({
-            senderId: id,
-            receiverId: receiverid
-        }),
         contentType: 'application/json',
         mimeType: 'application/json'
     })
         .then(function handleResponse(response) {
-            window.location.replace('match_box.html?id=' + id);
+            $('body').html(seeConvo(response));
         })
         .catch(function catchError(err) {
             alert('status: Error');
@@ -295,4 +291,37 @@ function submitUpdatedPrefsButton(event) {
             }
         })
         .catch(function catchError(err) {});
+}
+
+function seeConvo(response) {
+    var html = '<div class="container matchBoxContainer">';
+    for (var i = 0; i < response.length; i++) {
+        html += '<div class="row">';
+        html += '<div class="col-sm-12">';
+        html +=
+            '<div class="card text-white bg-primary matchBoxCard ' +
+            floatRightorLeft(response[i].id) +
+            '"><div class="card-header ">' +
+            response[i].senderName +
+            ' to ' +
+            response[i].receiverName +
+            '</div><div class="card-body"><h4 class="card-title">&nbsp' +
+            response[i].message +
+            '</h4><p class="card-text">Sent At: &nbsp' +
+            response[i].timeStamp +
+            '</p></div></div>';
+        html += '</div>';
+        html += '</div>';
+    }
+    html += '</div>';
+    return html;
+}
+
+function floatRightorLeft(senderid) {
+    var id = getParameterByID('id');
+    if (senderid == id) {
+        return 'float-right';
+    } else {
+        return 'float-left';
+    }
 }

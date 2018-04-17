@@ -33,7 +33,7 @@ public class MatchBoxRepository {
         try {
             ArrayList<MatchBox> convo = new ArrayList<>();
             Connection conn = GetConnect.get();
-            PreparedStatement preparedStatement = conn.prepareStatement("SELECT * FROM matchBox WHERE senderid = ? " +
+            PreparedStatement preparedStatement = conn.prepareStatement("SELECT *,to_char(postedAt, 'HH12:MI:SS') FROM matchBox WHERE senderid = ?  " +
                     "or senderid = ? " +
                     "and receiverid = ? " +
                     "or receiverid = ? " +
